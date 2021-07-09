@@ -1,6 +1,6 @@
 import { app, BrowserWindow } from 'electron'
 import * as path from 'path'
-import './ipc'
+import registerIPC from './ipc'
 import getRendererFnsBridge from './renderer-fns-bridge'
 
 async function onWindowCreate(window: BrowserWindow) {
@@ -19,6 +19,7 @@ function createWindow() {
     width: 800,
   })
 
+  registerIPC(mainWindow)
   mainWindow.loadFile(path.join(__dirname, '../../index.html'))
   mainWindow.webContents.openDevTools()
 
